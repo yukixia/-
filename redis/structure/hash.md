@@ -29,7 +29,7 @@ typedef struct dictEntry {
 ```
 ### 2. hash键值对的插入操作之链表法解决冲突
 hash的键值插入函数为[dictAddRaw](https://github.com/redis/redis/blob/unstable/src/dict.c),在hash插入操作中可以看到进行了rehash，以及hash冲突时采用的解决办法（即链表法）。流程图如下
-![hashAdd](/redis/img/hashAdd.jpeg)
+![hashAdd](/redis/img/hashAdd.png)
 主要代码
 ```C
 dictEntry *dictAddRaw(dict *d, void *key, dictEntry **existing)
@@ -106,7 +106,7 @@ _dictExpandIfNeeded,而_dictKeyIndex又被dictAddRaw函数调用，调用dictAdd
 - dictReplace 往哈希表中插入或者替换元素
 - dictAddOrFind 在哈希表表中查找（不存在时插入）元素
 具体关系如下图
-![dictExpandIfNeeded](/redis/img/dictExpandIfNeed.jpeg)
+![dictExpandIfNeeded](/redis/img/dictExpandIfNeed.png)
 #### 3.2 rehash扩容扩多大
 在最新的redis代码rehash扩容是将当前的size进行加一操作dictExpand(d, d->ht_used[0] + 1)，采用逐渐找到最接近当前size的数量的容量进行扩容
 #### 3.3 rehash怎么执行
